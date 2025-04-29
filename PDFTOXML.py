@@ -43,28 +43,58 @@ st.write("Faça upload de **um ou mais PDFs** e visualize as etiquetas geradas, 
 
 #uploaded_files = st.file_uploader("📤 Carregar arquivos", type=["pdf"], accept_multiple_files=True)
 
-# Estilo para esconder o texto padrão e personalizar o botão "Browse files"
+# Aplica estilo para esconder o botão original e estilizar o layout
 st.markdown("""
 <style>
-/* Remove o texto do label original */
+/* Oculta o texto padrão do label */
 div[data-testid="stFileUploader"] > label > div {
-    font-size: 0px;
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
 }
-/* Estiliza o botão como "Carregar arquivos" */
+
+/* Oculta o botão padrão */
 div[data-testid="stFileUploader"] button {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Exibe botão personalizado com mesmo comportamento */
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border: none;
+    padding: 0;
+}
+
+.upload-btn {
+    border: none;
     background-color: #0066cc;
     color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 20px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
 }
 </style>
+
+<div class="upload-btn-wrapper">
+    <label class="upload-btn">📤 Carregar arquivos</label>
+</div>
 """, unsafe_allow_html=True)
 
-# Título visual antes do botão
-st.markdown("### 📤 Carregar arquivos")
+# File uploader real (escondido, mas funcional)
+uploaded_files = st.file_uploader(
+    label="Carregar arquivos",
+    type=["pdf"],
+    accept_multiple_files=True,
+    label_visibility="collapsed"
+)
 
 # Componente real de upload
 uploaded_files = st.file_uploader(
