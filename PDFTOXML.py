@@ -41,7 +41,7 @@ st.set_page_config(page_title="Conversor Múltiplo PDF → ZPL", layout="centere
 st.title("🖨️ Conversor de PDFs para ZPL")
 st.write("Faça upload de **um ou mais PDFs** e visualize as etiquetas geradas, com download dos ZPLs.")
 
-uploaded_files = st.file_uploader("📄 Selecione os arquivos PDF", type=["pdf"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("📤 Carregar arquivos", type=["pdf"], accept_multiple_files=True)
 
 if uploaded_files:
     zpl_files = {}
