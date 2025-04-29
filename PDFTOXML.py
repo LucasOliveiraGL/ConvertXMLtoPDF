@@ -41,7 +41,38 @@ st.set_page_config(page_title="Conversor Múltiplo PDF → ZPL", layout="centere
 st.title("🖨️ Conversor de PDFs para ZPL")
 st.write("Faça upload de **um ou mais PDFs** e visualize as etiquetas geradas, com download dos ZPLs.")
 
-uploaded_files = st.file_uploader("📤 Carregar arquivos", type=["pdf"], accept_multiple_files=True)
+#uploaded_files = st.file_uploader("📤 Carregar arquivos", type=["pdf"], accept_multiple_files=True)
+
+# Estilo para esconder o texto padrão e personalizar o botão "Browse files"
+st.markdown("""
+<style>
+/* Remove o texto do label original */
+div[data-testid="stFileUploader"] > label > div {
+    font-size: 0px;
+}
+/* Estiliza o botão como "Carregar arquivos" */
+div[data-testid="stFileUploader"] button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Título visual antes do botão
+st.markdown("### 📤 Carregar arquivos")
+
+# Componente real de upload
+uploaded_files = st.file_uploader(
+    label=" ",  # Mantém o espaço em branco para o hack de CSS funcionar
+    type=["pdf"],
+    accept_multiple_files=True
+)
+
 
 if uploaded_files:
     zpl_files = {}
